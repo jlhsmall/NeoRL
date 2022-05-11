@@ -1,5 +1,7 @@
 import neorl
-
+#env = neorl.make("citylearn")
+#env.reset()
+#env.step(env.action_space.sample())
 
 env = neorl.make("citylearn")
 train_data, val_data = env.get_dataset(data_type="medium", train_num=100, need_val=True)

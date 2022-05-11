@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: neorl
+Version: 0.3.0
+Summary: NeoRL is NEar real-world benchmarks for Offline Reinforcement Learning
+Home-page: https://agit.ai/Polixir/neorl.git
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.7
+Provides-Extra: mujoco
+License-File: LICENSE
+
+UNKNOWN
+
