@@ -4,6 +4,7 @@ import json
 import time
 import argparse
 import numpy as np
+import torch.cuda
 from ray import tune
 
 from offlinerl.algo import algo_select
@@ -20,7 +21,7 @@ def training_function(config):
     algo_init_fn, algo_trainer_obj, algo_config = algo_select(config["kwargs"])
     train_buffer, val_buffer = load_data_from_neorl(algo_config["task"], algo_config["task_data_type"], algo_config["task_train_num"])
     algo_config.update(config)
-    algo_config["device"] = "cuda"
+    algo_config["device"] = 'cuda' if torch.cuda.is_available() else 'cpu'
     algo_config['dynamics_path'] = os.path.join(config['dynamics_root'], 
         f'{algo_config["task"]}-{algo_config["task_data_type"]}-{algo_config["task_train_num"]}-{config["seed"]}.pt')
     algo_config['behavior_path'] = os.path.join(config['behavior_root'], 
@@ -113,12 +114,12 @@ if __name__ == '__main__':
         training_function,
         name=f'{domain}-{level}-{amount}-{algo}',
         config=config,
-        queue_trials=True,
+        #queue_trials=True,
         metric='reward',
         mode='max',
         resources_per_trial={
-            "cpu": 1,
-            "gpu": 1.0,
+            "cpu": 2,
+            #"gpu": 1.0,
         }
     )
 

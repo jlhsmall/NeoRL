@@ -10,7 +10,7 @@ def training_function(config):
     algo_init_fn, algo_trainer_obj, algo_config = algo_select(config["kwargs"])
     train_buffer, val_buffer = load_data_from_neorl(algo_config["task"], algo_config["task_data_type"], algo_config["task_train_num"])
     algo_config.update(config)
-    algo_config["device"] = "cuda"
+    algo_config["device"] = 'cuda' if torch.cuda.is_available() else 'cpu'
     algo_init = algo_init_fn(algo_config)
     algo_trainer = algo_trainer_obj(algo_init, algo_config)
 
@@ -35,7 +35,7 @@ def run_algo(**kwargs):
     analysis = tune.run(
         training_function,
         config=config,
-        resources_per_trial={"gpu": 1},
+        resources_per_trial={"cpu":2},#{"gpu": 1},
         queue_trials = True,
         )
 

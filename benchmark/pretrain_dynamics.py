@@ -3,7 +3,6 @@ import ray
 import torch
 import numpy as np
 from ray import tune
-
 from offlinerl.utils.exp import setup_seed
 from offlinerl.data import load_data_from_neorl
 from offlinerl.utils.net.model.ensemble import EnsembleTransition
@@ -16,7 +15,7 @@ def _select_best_indexes(metrics, n):
     selected_indexes = [pairs[i][1] for i in range(n)]
     return selected_indexes
 
-def _train_transition(transition, data, optim, device='cuda'):
+def _train_transition(transition, data, optim, device='cuda' if torch.cuda.is_available() else 'cpu'):
     data.to_torch(device=device)
     dist = transition(torch.cat([data['obs'], data['act']], dim=-1))
     loss = - dist.log_prob(torch.cat([data['obs_next'], data['rew']], dim=-1))
@@ -28,7 +27,7 @@ def _train_transition(transition, data, optim, device='cuda'):
     loss.backward()
     optim.step()
     
-def _eval_transition(transition, valdata, device='cuda'):
+def _eval_transition(transition, valdata, device='cuda' if torch.cuda.is_available() else 'cpu'):
     with torch.no_grad():
         valdata.to_torch(device=device)
         dist = transition(torch.cat([valdata['obs'], valdata['act']], dim=-1))
@@ -51,7 +50,7 @@ def training_dynamics(config):
     obs_shape = train_buffer['obs'].shape[-1]
     action_shape = train_buffer['act'].shape[-1]
 
-    device = 'cuda'
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     hidden_units = 1024 if config["task"] in ['ib', 'finance', 'citylearn'] else 256
     transition = EnsembleTransition(obs_shape, action_shape, hidden_units, 4, 7).to(device)
@@ -128,8 +127,8 @@ if __name__ == '__main__':
         config=config,
         queue_trials=True,
         resources_per_trial={
-            "cpu": 1,
-            "gpu": 1.0,
+            "cpu": 2,
+            #"gpu": 1.0,
         }
     )
 

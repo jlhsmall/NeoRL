@@ -97,8 +97,8 @@ if __name__ == '__main__':
             metric='ope',
             mode='max',
             resources_per_trial={
-                "cpu": 1,
-                "gpu": 1.0,
+                "cpu": 2,
+                #"gpu": 1.0,
             }
         )
 

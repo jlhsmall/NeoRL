@@ -6,7 +6,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-on', '--output_name', type=str)
     parser.add_argument('-oa', '--ope_algo', type=str)
-    parser.add_argument('-ng', '--num_gpus', type=float, default=1.0)
+    parser.add_argument('-ng', '--num_gpus', type=float, default=0.0)#1.0)
     parser.add_argument('--address', type=str, default=None)
     args = parser.parse_args()
 
