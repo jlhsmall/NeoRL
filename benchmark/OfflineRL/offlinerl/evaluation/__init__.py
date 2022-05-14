@@ -65,7 +65,7 @@ class CallBackFunctionList(CallBackFunction):
         return eval_res
 
 class OnlineCallBackFunction(CallBackFunction):
-    def initialize(self, train_buffer, val_buffer, task, number_of_runs=100, *args, **kwargs):
+    def initialize(self, train_buffer, val_buffer, task, number_of_runs=1, *args, **kwargs):
         self.task = task
         self.env = get_env(self.task)
         self.is_initialized = True

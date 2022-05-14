@@ -31,7 +31,7 @@ def run_algo(**kwargs):
     grid_tune = algo_config["grid_tune"]
     for k,v in grid_tune.items():
         config[k] = tune.grid_search(v)
-    
+
     analysis = tune.run(
         training_function,
         config=config,

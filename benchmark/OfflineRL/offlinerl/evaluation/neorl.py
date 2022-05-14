@@ -25,7 +25,7 @@ def test_one_trail(env, policy):
 
     return (rewards, lengths)
 
-def test_on_real_env(policy, env, number_of_runs=100):
+def test_on_real_env(policy, env, number_of_runs=1):
     rewards = []
     episode_lengths = []
     #policy = deepcopy(policy).cpu()

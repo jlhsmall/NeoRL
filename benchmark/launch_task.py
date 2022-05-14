@@ -30,7 +30,7 @@ def training_function(config):
     algo_trainer = algo_trainer_obj(algo_init, algo_config)
 
     callback = PeriodicCallBack(OnlineCallBackFunction(), 50)
-    callback.initialize(train_buffer=train_buffer, val_buffer=val_buffer, task=algo_config["task"], number_of_runs=1000)
+    callback.initialize(train_buffer=train_buffer, val_buffer=val_buffer, task=algo_config["task"], number_of_runs=1)
 
     algo_trainer.train(train_buffer, val_buffer, callback_fn=callback)
     algo_trainer.exp_logger.flush()
@@ -82,7 +82,8 @@ if __name__ == '__main__':
     parser.add_argument('--address', type=str, default=None, help='address of the ray cluster')
     args = parser.parse_args()
 
-    ray.init(args.address)
+    ray.init(local_mode=True)
+    #ray.init(args.address)
 
     domain = args.domain
     level = args.level

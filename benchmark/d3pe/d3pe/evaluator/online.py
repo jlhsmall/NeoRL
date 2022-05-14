@@ -24,7 +24,7 @@ def test_one_trail(env : gym.Env, policy : Policy):
 
     return (rewards, lengths)
 
-def test_on_real_env(env : gym.Env, policy : Policy, number_of_runs : int = 10):
+def test_on_real_env(env : gym.Env, policy : Policy, number_of_runs : int = 1):
     rewards = []
     episode_lengths = []
 
@@ -45,7 +45,7 @@ class OnlineEvaluator(Evaluator):
                    train_dataset : OPEDataset, 
                    val_dataset : OPEDataset, 
                    task : str, 
-                   number_of_runs : int = 10, 
+                   number_of_runs : int = 1,
                    *args, **kwargs):
         self.task = task
         self.number_of_runs = number_of_runs

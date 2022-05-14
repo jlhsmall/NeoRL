@@ -21,7 +21,7 @@ if __name__ == '__main__':
     tasks = []
     for domain in ['citylearn']:#['HalfCheetah-v3', 'Hopper-v3', 'Walker2d-v3', 'ib', 'finance', 'citylearn']:
         for level in ['low', 'medium', 'high']:
-            for amount in [100, 1000, 10000] if not domain == 'finance' else [100, 1000]:
+            for amount in [100,1000]:#[100, 1000, 10000] if not domain == 'finance' else [100, 1000]:
                 if not check_file(domain, level, amount, args.algo):
                     if args.address is not None:
                         os.system(f'python launch_task.py --domain {domain} --level {level} --amount {amount} --algo {args.algo} --address {args.address}')
