@@ -77,8 +77,8 @@ if __name__ == '__main__':
             level = split_name[1]
             amount = int(split_name[2])
 
-        if (not args.overwrite) and check_file(domain, level, amount, args.algo, args.ope): continue
-
+        #if (not args.overwrite) and check_file(domain, level, amount, args.algo, args.ope): continue
+        if check_file(domain, level, amount, args.algo, args.ope): continue
         config = {
             'seed' : tune.grid_search(SEEDS),
             'ope' : args.ope,            
@@ -93,7 +93,7 @@ if __name__ == '__main__':
             launch_ope,
             name=f'{domain}-{level}-{amount}-{args.algo}-{args.ope}',
             config=config,
-            queue_trials=True,
+            #queue_trials=True,
             metric='ope',
             mode='max',
             resources_per_trial={
