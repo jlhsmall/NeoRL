@@ -62,7 +62,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     ray.init(address=args.address)
-
+    #ray.init(local_mode=True)
     for task_name in sorted(filter(lambda x: args.algo in x, os.listdir(aim_folder))):
         task_folder = os.path.join(aim_folder, task_name)
         exp_names = list(filter(lambda x: not x == 'index' and not 'json' in x, os.listdir(task_folder)))

@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     # start or attach ray cluster
     ray.init(args.address)
-
+    #ray.init(local_mode=True)
     # make sure the data exist
     env = neorl.make(args.domain)
     env.get_dataset(data_type=args.level, train_num=args.amount)
