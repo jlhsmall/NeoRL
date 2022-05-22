@@ -78,7 +78,7 @@ if __name__ == '__main__':
     parser.add_argument('--domain', type=str)
     parser.add_argument('--level', type=str)
     parser.add_argument('--amount', type=int)
-    parser.add_argument('--algo', type=str, help='select from `bc`, `bcq`, `plas`, `cql`, `crr`, `bremen`, `mopo`')
+    parser.add_argument('--algo', type=str, help='select from `bc`, `bcq`, `plas`, `cql`, `crr`, `bremen`, `mopo`, `bcq2`',)
     parser.add_argument('--address', type=str, default=None, help='address of the ray cluster')
     args = parser.parse_args()
 

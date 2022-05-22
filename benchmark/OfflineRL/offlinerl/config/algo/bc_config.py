@@ -15,7 +15,7 @@ max_action = None
 actor_features = 256
 actor_layers = 2
 
-batch_size = 256
+batch_size = 100#256
 steps_per_epoch = 1000
 max_epoch = 100
 

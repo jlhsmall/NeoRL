@@ -11,7 +11,7 @@ def check_file(domain, level, amount, algo):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--algo', type=str, help='select from `bc`, `bcq`, `plas`, `cql`, `crr`, `bremen`, `mopo`')
+    parser.add_argument('--algo', type=str, help='select from `bc`, `bcq`, `plas`, `cql`, `crr`, `bremen`, `mopo`, `bcq2`')
     parser.add_argument('--address', type=str, default=None, help='address of the ray cluster')
     args = parser.parse_args()
 

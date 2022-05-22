@@ -33,11 +33,11 @@ soft_target_tau = 5e-3
 
 #tune
 params_tune = {
-    "phi" : {"type" : "discrete", "value": [0.05, 0.1, 0.2]},
-    "lam" : {"type" : "continuous", "value": [0, 1]},
+    "phi" : {"type" : "discrete", "value": [0.1]},
+    "lam" : {"type" : "continuous", "value": [0, 0.25, 0.5, 0.75, 1]},
 }
 
 #tune
 grid_tune = {
-    "phi" : [0.05, 0.1, 0.2, 0.5],
+    "lam" : [0, 0.25, 0.5, 0.75, 1]
 }
